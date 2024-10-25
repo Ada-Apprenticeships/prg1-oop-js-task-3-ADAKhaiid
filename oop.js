@@ -12,8 +12,14 @@ function validatePriority(priority) { // value can be a string or a number (inte
 
 
 function todaysDate () {
-  
+    // Sets the Current Time
+    const currentTime = new Date();
+
+    // Return the wanted formatted data
+    return `${currentTime.getDate()}/${currentTime.getMonth() + 1}/${currentTime.getFullYear()} ${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;  
 }
+console.log(todaysDate()); 
+
 
 
 class Task  {

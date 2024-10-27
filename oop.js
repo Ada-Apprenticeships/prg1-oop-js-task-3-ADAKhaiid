@@ -3,12 +3,10 @@ PRIORITY = { "LOW": 1, "MEDIUM": 3, "HIGH": 5, "URGENT": 7 };
 
 function validInteger (value) { // value can be a string or a number (integer)
   const strValue = String(value);
-
-  // Check if the string is a valid positive integer
+  // Check if the string is a valid positive integer using a regex
   const isPositiveInteger = /^\d+$/.test(strValue);  
   return isPositiveInteger;
 }  
-
 
 function validatePriority(priority) { // value can be a string or a number (integer)
   const strValue = String(priority);
@@ -32,15 +30,21 @@ function validatePriority(priority) { // value can be a string or a number (inte
   }
 }
 
-
 function todaysDate () {
     // Sets the Current Time
     const currentTime = new Date();
-
+    // Getting the wanted formatted date
+    const day = String(currentTime.getDate()).padStart(2, "0")
+    const month = String(currentTime.getMonth() + 1).padStart(2, "0")
+    const year = currentTime.getFullYear()
+    // Getting the current time
+    const hours = String(currentTime.getHours()).padStart(2, "0")
+    const minutes = String(currentTime.getMinutes()).padStart(2, "0")
+    const seconds = String(currentTime.getSeconds()).padStart(2, "0")
     // Return the wanted formatted data
-    return `${currentTime.getDate()}/${currentTime.getMonth() + 1}/${currentTime.getFullYear()} ${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;  
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
 }
-console.log(todaysDate()); 
+
 
 
 

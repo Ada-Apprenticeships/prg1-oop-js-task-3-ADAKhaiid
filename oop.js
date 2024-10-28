@@ -34,6 +34,7 @@ function todaysDate () {
     // Sets the Current Time
     const currentTime = new Date();
     // Getting the wanted formatted date
+    // .padStart(2, "0") is used to add a 0 to single digits
     const day = String(currentTime.getDate()).padStart(2, "0")
     const month = String(currentTime.getMonth() + 1).padStart(2, "0")
     const year = currentTime.getFullYear()
@@ -45,17 +46,32 @@ function todaysDate () {
     return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
 }
 
-
-
-
 class Task  {
+  constructor(title,priority) {
+    this._title = title
+    this._priority = validInteger(priority)
+    this._currentTime = todaysDate()
+  }
+ 
+  get title() {
+    return this._title
+  }
 
-  // (title, priority)
+  get priority() {
+    return this._priority
+  }
+
+  get currentTime() {
+    return this._currentTime
+  }
+
+  set priority(value) {
+    this._priority = validInteger(value)
+  }
 }
 
-
 class ToDo {
-    
+  
 }
 
 

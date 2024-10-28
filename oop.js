@@ -12,20 +12,20 @@ function validatePriority(priority) { // value can be a string or a number (inte
   const strValue = String(priority);
 
   // Check for valid priority values
-  if (strValue === '1' || strValue.toUpperCase() === 'LOW') {
+  if (strValue === "1" || strValue.toUpperCase() === "LOW") {
       return PRIORITY.LOW;
   } 
-  else if (strValue === '3' || strValue.toUpperCase() === 'MEDIUM') {
+  else if (strValue === "3" || strValue.toUpperCase() === "MEDIUM") {
     return PRIORITY.MEDIUM;
   } 
-  else if (strValue === '5' || strValue.toUpperCase() === 'HIGH') {
+  else if (strValue === "5" || strValue.toUpperCase() === "HIGH") {
     return PRIORITY.HIGH;
   } 
-  else if (strValue === '7' || strValue.toUpperCase() === 'URGENT') {
+  else if (strValue === "7" || strValue.toUpperCase() === "URGENT") {
     return PRIORITY.URGENT;
   } 
   else {
-    // If the value is 'invalid', return LOW priority
+    // If the value is 'Invalid', return LOW priority
     return PRIORITY.LOW;
   }
 }

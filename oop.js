@@ -8,8 +8,10 @@ function validInteger(value) {
 }
 
 function validatePriority(priority) {
+    // Changes priority to an Integer
     const value = Number(priority);
-    return Object.values(PRIORITY).includes(value) ? value : PRIORITY.LOW; // // If the value is 'Invalid', return LOW priority
+    // If the value is 'Invalid', return LOW priority using a conditional statement 
+    return Object.values(PRIORITY).includes(value) ? value : PRIORITY.LOW;
 }
 
 function todaysDate() {
@@ -32,31 +34,93 @@ function todaysDate() {
 }
 
 class Task {
-    constructor(title, priority) {
-        this._title = title; 
-        this._priority = validatePriority(priority); 
-        this._dateToday = todaysDate(); 
-    }
+  constructor(title, priority) {
+      // Creates a task title
+      this._title = title; 
+      // Sets the priority level of the task
+      this._priority = validatePriority(priority); 
+      // Sets the date and time when the task was added
+      this._added = todaysDate(); 
+  }
 
-    get title() {
-        return this._title;
-    }
-    
-    get priority() {
-        return this._priority;
-    }
+  get title() {
+      return this._title;
+  }
+  
+  get priority() {
+      return this._priority;
+  }
 
-    set priority(value) {
-        this._priority = validatePriority(value); 
-    }
+  get added() {
+      return this._added;
+  }
 
-    get dateToday() {
-        return this._dateToday;
-    }
+  set priority(value) {
+    this._priority = validatePriority(value); 
+  }
 }
 
 class ToDo {
+  constructor() {
+      // Creates an array to hold the tasks
+      this.tasks = []; 
+  }
 
+  // Adding a task to the array
+  add(task) {
+      // Check if the task is an instance of the Task class
+      if (task instanceof Task) {
+          // Adds the task to the tasks array & return the it's length 
+          this.tasks.push(task);
+          return this.tasks.length; 
+      }
+      // Throw an error if the added ask is not a Task instance
+      throw new Error("Only instances of Task can be added.");
+  }
+
+  // Remove a task from the array
+  remove(title) {
+      // Finds the index of the task with the specified title
+      const index = this.tasks.findIndex(task => task.title === title);
+      if (index !== -1) {
+          // Removes the task if found and returns true
+          this.tasks.splice(index, 1);
+          return true;
+      }
+      // Returns false if the task was not found
+      return false; 
+  }
+
+  // Listing tasks through filtering by priority 
+  list(priority = 0) {
+      if (priority === 0) {
+          // Returns all tasks with if no priority is specified
+          return this.tasks.map(task => [task.added, task.title, task.priority]); 
+      }
+      // Filters tasks by specified priority and returns key information
+      return this.tasks
+      .filter(task => task.priority === priority)
+      .map(task => [task.added, task.title, task.priority]); 
+  }
+
+  // Retrieving a single task by title
+  task(title) {
+      // Finds & returns the task with the matching title
+      const task = this.tasks.find(task => task.title === title);
+      if (task) {
+          return task; 
+      }
+      // Throws an error if no task with the specified title is found
+      throw new Error(`Task '${title}' Not Found`);
+  }
+}
+
+try {
+  // Attempts to retrieve a task with the title 'WrongTitle'
+  console.log(taskList.task('WrongTitle')); 
+} catch (error) {
+  // If an error occurs the error message logs to the console
+  console.error(error.message); 
 }
 
 // Leave this code here for the automated tests

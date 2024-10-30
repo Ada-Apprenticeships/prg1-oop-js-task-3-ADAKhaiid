@@ -34,29 +34,34 @@ function todaysDate() {
 }
 
 class Task {
-  constructor(title, priority) {
+   
+    #title;
+    #priority;
+    #added
+  
+    constructor(title, priority) {
       // Creates a task title
-      this._title = title; 
+      this.#title = title; 
       // Sets the priority level of the task
-      this._priority = validatePriority(priority); 
+      this.#priority = validatePriority(priority); 
       // Sets the date and time when the task was added
-      this._added = todaysDate(); 
+      this.#added = todaysDate(); 
   }
-
+  
   get title() {
-      return this._title;
+      return this.#title;
   }
   
   get priority() {
-      return this._priority;
+      return this.#priority;
   }
 
   get added() {
-      return this._added;
+      return this.#added;
   }
 
   set priority(value) {
-    this._priority = validatePriority(value); 
+    this.#priority = validatePriority(value); 
   }
 }
 

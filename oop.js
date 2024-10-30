@@ -115,14 +115,6 @@ class ToDo {
   }
 }
 
-try {
-  // Attempts to retrieve a task with the title 'WrongTitle'
-  console.log(taskList.task('WrongTitle')); 
-} catch (error) {
-  // If an error occurs the error message logs to the console
-  console.error(error.message); 
-}
-
 // Leave this code here for the automated tests
 module.exports = {
   PRIORITY, validInteger, validatePriority, todaysDate, ToDo, Task,
